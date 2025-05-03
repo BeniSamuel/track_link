@@ -27,7 +27,7 @@ public class UserService {
     }
 
     public User getUserById (Long id) {
-        return this.userRepository.getUserByUser_id(id).orElse(null);
+        return this.userRepository.getUserById(id).orElse(null);
     }
 
     public User createUser (UserRegisterDto userRegisterDto) {
