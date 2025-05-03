@@ -3,6 +3,7 @@ package com.tracklink.www.service;
 import com.tracklink.www.dto.UserRegisterDto;
 import com.tracklink.www.model.User;
 import com.tracklink.www.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +11,11 @@ import java.util.List;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService (UserRepository userRepository) {
+    public UserService (UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> getAllUsers () {
@@ -28,7 +31,7 @@ public class UserService {
     }
 
     public User createUser (UserRegisterDto userRegisterDto) {
-        User newUser = new User(userRegisterDto.getName(), userRegisterDto.getEmail(), userRegisterDto.getPassword(), userRegisterDto.getPhone(), userRegisterDto.getRole());
+        User newUser = new User(userRegisterDto.getName(), userRegisterDto.getEmail(), passwordEncoder.encode(userRegisterDto.getPassword()), userRegisterDto.getPhone(), userRegisterDto.getRole());
         return this.userRepository.save(newUser);
     }
 
