@@ -2,7 +2,7 @@ package com.tracklink.www.dto;
 
 import com.tracklink.www.enums.Role;
 
-public class UserInformDto {
+public class UserRegisterDto {
     private String name;
     private String email;
     private String password;
