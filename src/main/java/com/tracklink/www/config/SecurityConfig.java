@@ -29,6 +29,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/tracklink/v1/auth/register-user").permitAll()
                         .requestMatchers("/api/tracklink/v1/auth/login-user").permitAll()
+                        .requestMatchers("api/tracklink/v1/users/all").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
