@@ -14,6 +14,11 @@ public class Vehicle {
     private Long price;
 
     public Vehicle () {}
+    public Vehicle (Long longitude, Long latitude, Long price) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.price = price;
+    }
 
     public Long getLongitude () { return this.longitude; }
     public Long getLatitude () { return this.latitude; }
